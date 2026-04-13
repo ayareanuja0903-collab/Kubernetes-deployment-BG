@@ -76,7 +76,8 @@ kubectl patch service blue-service -p '{
 ## 📸 Screenshots
 
 🖥️ Blue Deployment Running
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/92b0fab9-eb12-42cc-91ae-bde71782aa5f" />
+<img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/Blue-deployment.png" />
+
 
 🟢 Green Deployment Running
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/102fd0d6-bcce-4d99-abde-2e5b9061a1f6" />
