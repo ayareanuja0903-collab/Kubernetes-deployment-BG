@@ -32,3 +32,91 @@ Once Green is validated, traffic is switched instantly from Blue → Green.
 ---
 
 ## 📁 Project Structure
+Kubernetes-blue-green-deployment/
+├── blue-deployment.yml
+├── green-deployment.yml
+├── blue-service.yml
+├── green-service.yml
+├── blue.html
+├── green.html
+├── service.yml
+└── README.md
+
+---
+
+## 🚀 Deployment Steps
+
+kubectl apply -f k8s/blue-deployment.yml
+kubectl apply -f k8s/green-deployment.yml
+kubectl apply -f k8s/blue-service.yml
+kubectl apply -f k8s/green-service.yml
+
+---
+
+## 🔄 Traffic Switching (Blue → Green)
+👉 Switch to Green
+kubectl patch service blue-service -p '{
+  "spec": {
+    "selector": {
+      "app": "myapp",
+      "version": "green"
+    }
+  }
+}'
+
+---
+
+## 🔙 Switch back to Blue
+
+kubectl patch service blue-service -p '{
+  "spec": {
+    "selector": {
+      "app": "myapp",
+      "version": "blue"
+    }
+  }
+}'
+
+---
+
+## 🌍 Application Access
+
+🔵 Blue App → http://<node-ip>:30009
+🟢 Green App → http://<node-ip>:30008
+
+---
+
+## 📸 Screenshots
+
+🖥️ Blue Deployment Running
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/92b0fab9-eb12-42cc-91ae-bde71782aa5f" />
+
+🟢 Green Deployment Running
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/102fd0d6-bcce-4d99-abde-2e5b9061a1f6" />
+
+🔄 Traffic Switching
+
+---
+
+## 📊 Key Benefits
+
+* Zero downtime deployments
+* Easy rollback strategy
+* Production-safe release process
+* Real-world Kubernetes experience
+---
+
+## 🎯 Project Outcome
+
+* Successfully deployed Blue-Green architecture
+* Implemented traffic switching using Kubernetes services
+* Learned production-grade deployment strategy
+* Improved DevOps & Kubernetes skills
+---
+
+## 👨‍💻 Author
+
+* DevOps Learning Project
+* Kubernetes Blue-Green Deployment 🚀
+
+--
