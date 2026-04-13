@@ -33,10 +33,10 @@ Once Green is validated, traffic is switched instantly from Blue → Green.
 
 ## 🚀 Deployment Steps
 
-kubectl apply -f k8s/blue-deployment.yml
-kubectl apply -f k8s/green-deployment.yml
-kubectl apply -f k8s/blue-service.yml
-kubectl apply -f k8s/green-service.yml
+- kubectl apply -f k8s/blue-deployment.yml
+- kubectl apply -f k8s/green-deployment.yml
+- kubectl apply -f k8s/blue-service.yml
+- kubectl apply -f k8s/green-service.yml
 
 ---
 
