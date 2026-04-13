@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Green Deployment Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1b5e20;
+      color: white;
+      text-align: center;
+    }
+
+    .header {
+      padding: 20px;
+      background: #2e7d32;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .container {
+      margin-top: 80px;
+    }
+
+    .card {
+      display: inline-block;
+      background: white;
+      color: #1b5e20;
+      padding: 30px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .status {
+      font-size: 20px;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      background: #145a18;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    🟢 GREEN DEPLOYMENT DASHBOARD
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h2>Application Status</h2>
+      <p class="status">RUNNING (GREEN VERSION)</p>
+      <hr>
+      <p>Environment: Production</p>
+      <p>Version: v2.0.0</p>
+      <p>Deployment: Green</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Kubernetes Blue-Green Deployment Demo 🚀
+  </div>
+
+</body>
+</html>

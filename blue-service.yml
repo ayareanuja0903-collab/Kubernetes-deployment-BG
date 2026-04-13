@@ -1,8 +1,7 @@
-# service.yml
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-service
+  name: blue-service
 spec:
   type: NodePort
   selector:
@@ -11,4 +10,4 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30007
+      nodePort: 30009

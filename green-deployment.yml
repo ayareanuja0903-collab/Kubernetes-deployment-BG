@@ -1,4 +1,3 @@
-# green-deployment.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +15,14 @@ spec:
         version: green
     spec:
       containers:
-      - name: myapp
-        image: nginx:latest
+      - name: nginx
+        image: nginx
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html-volume
+        configMap:
+          name: green-html
