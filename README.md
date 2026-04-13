@@ -32,7 +32,6 @@ Once Green is validated, traffic is switched instantly from Blue → Green.
 ---
 
 ## 📁 Project Structure
-
 Kubernetes-blue-green-deployment/
 │
 ├── blue-deployment.yml
