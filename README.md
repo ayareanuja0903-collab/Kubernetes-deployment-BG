@@ -80,7 +80,7 @@ kubectl patch service blue-service -p '{
 
 
 🟢 Green Deployment Running
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/102fd0d6-bcce-4d99-abde-2e5b9061a1f6" />
+<img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/green-deployment.png" />
 
 🔄 Traffic Switching
 
