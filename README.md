@@ -123,13 +123,12 @@ kubectl get endpoints service
 
 ## ⚠️ Challenges Faced & Solutions
 ```bash
-┌──────────────────────────────┬──────────────────────────────────────────────┬──────────────────────────────────────────────┐
-│ ⚠️ Issue                     |🔍 Problem                                   │ ✅ Solution                                 │
-├──────────────────────────────┼──────────────────────────────────────────────┼──────────────────────────────────────────────┤
-│ ConfigMap not found          │ Pods stuck in ContainerCreating              │ Created required ConfigMap                  │
-│ 404 Not Found                │ Nginx could not find index.html              │ Corrected file name in ConfigMap            │
-│ LoadBalancer not accessible  │ External URL not opening                     │ Updated AWS Security Group (Port 80)        │
-└──────────────────────────────┴──────────────────────────────────────────────┴──────────────────────────────────────────────┘
+┌──────────────────────────────┬───────────────────────────────────┬───────────────────────────────────────┐
+│ ⚠️ Issue                     | 🔍 Problem                       | ✅ Solution                          | 
+├──────────────────────────────┼───────────────────────────────────┼───────────────────────────────────────┤
+│ ConfigMap not found          │ Pods stuck in ContainerCreating   │ Created required ConfigMap            │
+│ LoadBalancer not accessible  │ External URL not opening          │ Updated AWS Security Group (Port 80)  │
+└──────────────────────────────┴───────────────────────────────────┴───────────────────────────────────────┘
 ```
 
 ## 🎯 Key Learnings
