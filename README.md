@@ -31,10 +31,10 @@ Once Green is validated, traffic is switched instantly from Blue → Green.
 
 ## 🚀 Deployment Steps
 
-- kubectl apply -f k8s/blue-deployment.yml
-- kubectl apply -f k8s/green-deployment.yml
-- kubectl apply -f k8s/blue-service.yml
-- kubectl apply -f k8s/green-service.yml
+- kubectl apply -f blue-deployment.yml
+- kubectl apply -f green-deployment.yml
+- kubectl apply -f blue-service.yml
+- kubectl apply -f green-service.yml
 
 ---
 
@@ -66,8 +66,8 @@ kubectl patch service blue-service -p '{
 
 ## 🌍 Application Access
 
-🔵 Blue App → http://<node-ip>:30009
-🟢 Green App → http://<node-ip>:30008
+🔵 Blue App → http://<node-ip>:30008
+🟢 Green App → http://<node-ip>:8082
 
 ---
 
