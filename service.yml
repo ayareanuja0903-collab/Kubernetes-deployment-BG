@@ -1,14 +1,13 @@
-# service.yml
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-service
+  name: blue-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: myapp
     version: blue
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30007
+      nodePort: 30009
