@@ -11,10 +11,10 @@ This project demonstrates a **Blue-Green Deployment strategy using Kubernetes** 
 
 ---
 
-## 🧠 What is Blue-Green Deployment?
-Blue-Green Deployment is a release management strategy where:
-- 🔵 **Blue Environment** → Current production version
-- 🟢 **Green Environment** → New version (testing/upgrade)
+## 🧠 What is Blue-Green Deployment?<br/>
+Blue-Green Deployment is a release management strategy where:<br/>
+- 🔵 **Blue Environment** → Current production version<br/>
+- 🟢 **Green Environment** → New version (testing/upgrade)<br/>
 
 Once Green is validated, traffic is switched instantly from Blue → Green.
 
