@@ -52,7 +52,7 @@ kubectl get nodes
 ## 🔵 Deploy Blue Version
 🔹 Create ConfigMap
 ```bash
-kubectl create configmap blue-html --from-file=index.html
+kubectl create configmap blue-html --from-file=blue.html
 ```
 🔹 Deploy Blue
 ```bash
