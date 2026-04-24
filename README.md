@@ -1,7 +1,6 @@
 # 🚀 Kubernetes Blue-Green Deployment
 
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Blue--Green-blue?style=for-the-badge&logo=kubernetes)
-![Docker](https://img.shields.io/badge/Docker-Containerization-blue?style=for-the-badge&logo=docker)
 ![NGINX](https://img.shields.io/badge/NGINX-Blue-green?style=for-the-badge&logo=nginx)
 ![Apache](https://img.shields.io/badge/Apache-Green-red?style=for-the-badge&logo=apache)
 
@@ -12,10 +11,10 @@ This project demonstrates a **Blue-Green Deployment strategy using Kubernetes** 
 
 ---
 
-## 🧠 What is Blue-Green Deployment?
-Blue-Green Deployment is a release management strategy where:
-- 🔵 **Blue Environment** → Current production version
-- 🟢 **Green Environment** → New version (testing/upgrade)
+## 🧠 What is Blue-Green Deployment?<br/>
+Blue-Green Deployment is a release management strategy where:<br/>
+🔵 **Blue Environment** → Current production version<br/>
+🟢 **Green Environment** → New version (testing/upgrade)<br/>
 
 Once Green is validated, traffic is switched instantly from Blue → Green.
 
@@ -23,7 +22,6 @@ Once Green is validated, traffic is switched instantly from Blue → Green.
 
 ## 🛠️ Tech Stack
 - Kubernetes ☸️
-- Docker 🐳
 - NGINX (Blue)
 - Apache HTTPD (Green)
 - kubectl CLI
@@ -33,10 +31,10 @@ Once Green is validated, traffic is switched instantly from Blue → Green.
 
 ## 🚀 Deployment Steps
 
-- kubectl apply -f k8s/blue-deployment.yml
-- kubectl apply -f k8s/green-deployment.yml
-- kubectl apply -f k8s/blue-service.yml
-- kubectl apply -f k8s/green-service.yml
+- kubectl apply -f blue-deployment.yml
+- kubectl apply -f green-deployment.yml
+- kubectl apply -f blue-service.yml
+- kubectl apply -f green-service.yml
 
 ---
 
@@ -68,18 +66,19 @@ kubectl patch service blue-service -p '{
 
 ## 🌍 Application Access
 
-🔵 Blue App → http://<node-ip>:30009
-🟢 Green App → http://<node-ip>:30008
+🔵 Blue App → http://<node-ip>:30008<br/>
+🟢 Green App → http://<node-ip>:8082<br/>
 
 ---
 
 ## 📸 Screenshots
 
 🖥️ Blue Deployment Running
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/92b0fab9-eb12-42cc-91ae-bde71782aa5f" />
+<img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/Blue-deployment.png" />
+
 
 🟢 Green Deployment Running
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/102fd0d6-bcce-4d99-abde-2e5b9061a1f6" />
+<img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/green-deployment.png" />
 
 🔄 Traffic Switching
 
