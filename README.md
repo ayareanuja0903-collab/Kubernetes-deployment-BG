@@ -7,21 +7,17 @@
 ![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
 
 
-📌 Project Overview
-
+📌 Project Overview<br/>
 This project demonstrates Blue-Green Deployment strategy using Kubernetes on AWS EKS (Elastic Kubernetes Service).
 
-It ensures:
-
-✅ Zero downtime deployment
-✅ Easy rollback
-✅ Safe production releases
-
----
+It ensures:<br/>
+✅ Zero downtime deployment<br/>
+✅ Easy rollback<br/>
+✅ Safe production releases<br/>
 
 ## 🏗️ Architecture
 <p>
-  <img src="">
+  <img width="1000" height="600" alt="Architeture-Blue-Green-deployment" src="https://github.com/user-attachments/assets/dc21c726-f9a1-4660-b24b-ac46241fc561" />
 </p>
 
 ## 🧠 What is Blue-Green Deployment?<br/>
@@ -31,71 +27,118 @@ Blue-Green Deployment is a release management strategy where:<br/>
 
 Once Green is validated, traffic is switched instantly from Blue → Green.
 
----
-
 ## 🛠️ Tech Stack
-- Kubernetes ☸️
-- NGINX (Blue)
-- Apache HTTPD (Green)
-- kubectl CLI
-- NodePort Services
+* Kubernetes (EKS)<br/>
+* AWS (EC2, EKS, ELB)<br/>
+* kubectl<br/>
+* eksctl<br/>
+* ConfigMap<br/>
 
----
+## 🚀 Setup & Installation
+🔹 1. Create EKS Cluster
+```bash
+eksctl create cluster --name my-eks-cluster --region ap-south-1
+```
 
-## 🚀 Deployment Steps
+🔹 2. Configure kubectl
+```bash
+aws eks update-kubeconfig --region ap-south-1 --name my-eks-cluster
+```
 
-- kubectl apply -f blue-deployment.yml
-- kubectl apply -f green-deployment.yml
-- kubectl apply -f blue-service.yml
-- kubectl apply -f green-service.yml
+🔹 3. Verify Cluster
+```bash
+kubectl get nodes
+```
+## 🔵 Deploy Blue Version
+🔹 Create ConfigMap
+```bash
+kubectl create configmap blue-html --from-file=index.html
+```
+🔹 Deploy Blue
+```bash
+kubectl apply -f blue-deployment.yml
+```
+🔹 Expose Service
+```bash
+kubectl apply -f service.yml
+```
+🔹 Get URL
+```bash
+kubectl get svc
+```
+👉 Open in browser:
+<img width="1000" height="600" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/Blue-deployment.png" />
 
----
+## 🟢 Deploy Green Version
+🔹 Create ConfigMap
+```bash
+kubectl create configmap green-html --from-file=index.html
+```
+🔹 Deploy Green
+```bash
+kubectl apply -f green-deployment.yml
+```
+🔄 Switch Traffic (Blue → Green)
+```bash
+kubectl edit svc blue-service
+```
+👉 Change:
+```bash
+selector:
+  app: myapp
+  version: blue
+```
+👉 To:
+```bash
+selector:
+  app: myapp
+  version: green
+```
+👉 Output: 
+<img width="1000" height="600" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/green-deployment.png" />
 
-## 🔄 Traffic Switching (Blue → Green)
-👉 Switch to Green
-kubectl patch service blue-service -p '{
-  "spec": {
-    "selector": {
-      "app": "myapp",
-      "version": "green"
-    }
-  }
-}'
+🔁 Rollback (Green → Blue)
 
----
+```bash
+kubectl edit svc blue-service
+```
 
-## 🔙 Switch back to Blue
+Change back:
+```bash
+version: green → blue
+```
+## 🔍 Verification
+🔹 Check Pods
+```bash
+kubectl get pods
+```
+🔹 Check Service
+```bash
+kubectl get svc
+```
+🔹 Check Endpoints
+```bash
+kubectl get endpoints service
+```
 
-kubectl patch service blue-service -p '{
-  "spec": {
-    "selector": {
-      "app": "myapp",
-      "version": "blue"
-    }
-  }
-}'
+## ⚠️ Challenges Faced & Solutions
+```bash
+| ❌ Issue | 🔍 Problem | ✅ Solution |
+|---------|-----------|------------|
+| ConfigMap not found | Pods stuck in `ContainerCreating` state | Created the required ConfigMap before deploying pods |
+| LoadBalancer not accessible | External URL was not opening | Updated AWS Security Group to allow HTTP (Port 80) |
+```
 
----
+## 🎯 Key Learnings
+Kubernetes Service acts as traffic controller
+ConfigMaps are critical for dynamic content
+LoadBalancer integrates with AWS ELB
+Blue-Green deployment ensures zero downtime
 
-## 🌍 Application Access
-
-🔵 Blue App → http://<node-ip>:30008<br/>
-🟢 Green App → http://<node-ip>:8082<br/>
-
----
-
-## 📸 Screenshots
-
-🖥️ Blue Deployment Running
-<img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/Blue-deployment.png" />
-
-
-🟢 Green Deployment Running
-<img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/green-deployment.png" />
-
-🔄 Traffic Switching
-
----
+## 🧹 Cleanup (Avoid AWS Charges)
+```bash
+eksctl delete cluster --name my-eks-cluster --region ap-south-1
+```
 
 ## 📊 Key Benefits
 
@@ -103,7 +146,6 @@ kubectl patch service blue-service -p '{
 * Easy rollback strategy
 * Production-safe release process
 * Real-world Kubernetes experience
----
 
 ## 🎯 Project Outcome
 
@@ -111,11 +153,7 @@ kubectl patch service blue-service -p '{
 * Implemented traffic switching using Kubernetes services
 * Learned production-grade deployment strategy
 * Improved DevOps & Kubernetes skills
----
 
 ## 👨‍💻 Author
-
-* DevOps Learning Project
-* Kubernetes Blue-Green Deployment 🚀
-
---
+* Anuja Ayare
+* DevOps Engineer
