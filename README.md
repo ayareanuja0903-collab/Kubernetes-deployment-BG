@@ -2,7 +2,6 @@
 
 ![EKS](https://img.shields.io/badge/AWS-EKS-orange?logo=amazonaws)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-blue?logo=kubernetes)
-![Docker](https://img.shields.io/badge/Container-nginx-blue?logo=docker)
 ![CI/CD](https://img.shields.io/badge/Deployment-Zero%20Downtime-success)
 ![Strategy](https://img.shields.io/badge/Strategy-Blue--Green-purple)
 ![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
