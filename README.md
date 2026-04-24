@@ -21,62 +21,107 @@ Once Green is validated, traffic is switched instantly from Blue → Green.
 ---
 
 ## 🛠️ Tech Stack
-- Kubernetes ☸️
-- NGINX (Blue)
-- Apache HTTPD (Green)
-- kubectl CLI
-- NodePort Services
+* Kubernetes (EKS)
+* AWS (EC2, EKS, ELB)
+* kubectl
+* eksctl
+* ConfigMap
 
 ---
 
-## 🚀 Deployment Steps
+📂 Project Structure
+```bash
+Kubernetes-deployment-BG/
+│── blue-deployment.yml
+│── green-deployment.yml
+│── service.yml
+│── index.html
+│── green.html
+│── README.md
+```
 
-- kubectl apply -f blue-deployment.yml
-- kubectl apply -f green-deployment.yml
-- kubectl apply -f blue-service.yml
-- kubectl apply -f green-service.yml
+## 🚀 Setup & Installation
+🔹 1. Create EKS Cluster
+```bash
+eksctl create cluster --name my-eks-cluster --region ap-south-1
+```
+🔹 2. Configure kubectl
+```bash
+aws eks update-kubeconfig --region ap-south-1 --name my-eks-cluster
+```
+🔹 3. Verify Cluster
+```bash
+kubectl get nodes
+```
 
----
+🔵 Deploy Blue Version
 
-## 🔄 Traffic Switching (Blue → Green)
-👉 Switch to Green
-kubectl patch service blue-service -p '{
-  "spec": {
-    "selector": {
-      "app": "myapp",
-      "version": "green"
-    }
-  }
-}'
-
----
-
-## 🔙 Switch back to Blue
-
-kubectl patch service blue-service -p '{
-  "spec": {
-    "selector": {
-      "app": "myapp",
-      "version": "blue"
-    }
-  }
-}'
-
----
-
-## 🌍 Application Access
-
-🔵 Blue App → http://<node-ip>:30008<br/>
-🟢 Green App → http://<node-ip>:8082<br/>
-
----
-
-## 📸 Screenshots
-
-🖥️ Blue Deployment Running
+🔹 Create ConfigMap
+```bash
+kubectl create configmap blue-html --from-file=blue.html
+```
+🔹 Deploy Blue
+```bash
+kubectl apply -f blue-deployment.yml
+```
+🔹 Expose Service
+```bash
+kubectl apply -f service.yml
+```
+🔹 Get URL
+```bash
+kubectl get svc
+```
+👉 Open in browser:
 <img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/Blue-deployment.png" />
 
-
+🟢 Deploy Green Version
+🔹 Create ConfigMap
+```bash
+kubectl create configmap green-html --from-file=green.html
+```
+🔹 Deploy Green
+```bash
+kubectl apply -f green-deployment.yml
+```
+🔄 Switch Traffic (Blue → Green)
+```bash
+kubectl edit svc blue-service
+```
+Change: service.yml
+```bash
+selector:
+  app: myapp
+  version: blue
+```
+👉 TO:
+```bash
+selector:
+  app: myapp
+  version: green
+```
+🔁 Rollback (Green → Blue)
+```bash
+kubectl edit svc blue-service
+```
+Change back:
+```bash
+version: green → blue
+```
+🔍 Verification
+Check Pods
+```bash
+kubectl get pods
+```
+Check Service
+```bash
+kubectl get svc
+```
+Check Endpoints
+```bash
+kubectl get endpoints service
+```
+Output: 
 🟢 Green Deployment Running
 <img width="1920" height="1080" alt="image" src="https://github.com/ayareanuja0903-collab/Kubernetes-deployment-BG/blob/main/screenshots/green-deployment.png" />
 
@@ -84,20 +129,18 @@ kubectl patch service blue-service -p '{
 
 ---
 
-## 📊 Key Benefits
+## 🎯 Key Learnings
 
-* Zero downtime deployments
-* Easy rollback strategy
-* Production-safe release process
-* Real-world Kubernetes experience
+* Kubernetes Service acts as traffic controller
+* ConfigMaps are critical for dynamic content
+* LoadBalancer integrates with AWS ELB
+* Blue-Green deployment ensures zero downtime
 ---
 
-## 🎯 Project Outcome
-
-* Successfully deployed Blue-Green architecture
-* Implemented traffic switching using Kubernetes services
-* Learned production-grade deployment strategy
-* Improved DevOps & Kubernetes skills
+## 🧹 Cleanup (Avoid AWS Charges)
+```bash
+eksctl delete cluster --name my-eks-cluster --region ap-south-1
+```
 ---
 
 ## 👨‍💻 Author
