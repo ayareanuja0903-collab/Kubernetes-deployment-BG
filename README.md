@@ -13,8 +13,8 @@ This project demonstrates a **Blue-Green Deployment strategy using Kubernetes** 
 
 ## 🧠 What is Blue-Green Deployment?<br/>
 Blue-Green Deployment is a release management strategy where:<br/>
-- 🔵 **Blue Environment** → Current production version<br/>
-- 🟢 **Green Environment** → New version (testing/upgrade)<br/>
+🔵 **Blue Environment** → Current production version<br/>
+🟢 **Green Environment** → New version (testing/upgrade)<br/>
 
 Once Green is validated, traffic is switched instantly from Blue → Green.
 
@@ -66,8 +66,8 @@ kubectl patch service blue-service -p '{
 
 ## 🌍 Application Access
 
-🔵 Blue App → http://<node-ip>:30008
-🟢 Green App → http://<node-ip>:8082
+🔵 Blue App → http://<node-ip>:30008<br/>
+🟢 Green App → http://<node-ip>:8082<br/>
 
 ---
 
