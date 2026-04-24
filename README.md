@@ -123,17 +123,17 @@ kubectl get endpoints service
 
 ## ⚠️ Challenges Faced & Solutions
 ```bash
-| ❌ Issue | 🔍 Problem | ✅ Solution |
-|---------|-----------|------------|
-| ConfigMap not found | Pods stuck in `ContainerCreating` state | Created the required ConfigMap before deploying pods |
-| LoadBalancer not accessible | External URL was not opening | Updated AWS Security Group to allow HTTP (Port 80) |
+printf "\e[1;34m⚠️  Issue\t🔍 Problem\t✅ Solution\e[0m\n\
+\e[31mConfigMap not found\e[0m\tPods stuck in ContainerCreating\t\e[32mCreated required ConfigMap\e[0m\n\
+\e[31m404 Not Found\e[0m\tNginx could not find index.html\t\e[32mCorrected file name in ConfigMap\e[0m\n\
+\e[31mLoadBalancer not accessible\e[0m\tExternal URL not opening\t\e[32mUpdated AWS Security Group (Port 80)\e[0m\n" | column -t -s $'\t'
 ```
 
 ## 🎯 Key Learnings
-Kubernetes Service acts as traffic controller
-ConfigMaps are critical for dynamic content
-LoadBalancer integrates with AWS ELB
-Blue-Green deployment ensures zero downtime
+* Kubernetes Service acts as traffic controller
+* ConfigMaps are critical for dynamic content
+* LoadBalancer integrates with AWS ELB
+* Blue-Green deployment ensures zero downtime
 
 ## 🧹 Cleanup (Avoid AWS Charges)
 ```bash
